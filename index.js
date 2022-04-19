@@ -28,6 +28,9 @@ client.on("messageCreate", (message) => {
   else if (message.content.startsWith(";invite")){
     message.channel.send("Here is the invite link for this bot: https://discord.com/api/oauth2/authorize?client_id=965565479127236618&permissions=8&scope=bot")
   }
+  else if (message.content.startsWith(";status1")){
+    client.user.setActivity("hi the ststus changed");
+  }
   
 });
 

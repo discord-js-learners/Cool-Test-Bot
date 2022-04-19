@@ -16,6 +16,7 @@ const embedHelp = new MessageEmbed()
             { name: '`;rsst`', value: 'Change the status back to "Coded by shour"' },
             { name: '`;restart`', value: 'Restart The Bot' },
             { name: '`;clear`', value: 'clears the whole channel' },
+            { name: '`;shutdown`', value: 'Stops the bot' },
           
         )
         .setTimestamp();
@@ -26,6 +27,13 @@ function resetBot(channel) {
   .then(msg => client.destroy())
   .then(() => client.login(config.TOKEN));
   channel.send('logged in')
+}
+  function shutdownbot(channel) {
+    channel.send('The bot has been shutdown')
+    .then(msg => client.destroy())
+    
+    
+
 }
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
@@ -95,6 +103,9 @@ client.on("messageCreate", (message) => {
   }
   else if (message.content.startsWith(";restart")){
     resetBot(message.channel);
+  }
+  else if (message.content.startsWith(";shutdown")){
+    shutdownbot(message.channel);
   }
   
   

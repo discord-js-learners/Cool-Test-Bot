@@ -1,5 +1,5 @@
 # Cool Test Bot
-This is a cool bot which has some features
+This is a cool bot which has some features 
 # Modify For Windows
 
  First of all clone this repo using [git](https://git-scm.com/) <br>
@@ -13,7 +13,8 @@ This is a cool bot which has some features
 "TOKEN":"yourbottokenhere"
 }
 ```
-to hide it if you are using heruko or uploading the code to github put config.json in the gitignore it is already there because i put it in there aswell so i can hide it in here
+to hide it if you are using heruko or uploading the code to github put config.json in the gitignore it is already there because i put it in there aswell so i can hide it in here <br>
+
 # Modify For Linux
 Make sure you have [node.js](https://nodejs.org/) installed or else it is not going to work the bash file will install git and then clone the repo and also install discord.js
 ```sh

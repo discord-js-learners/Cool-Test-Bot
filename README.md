@@ -1,5 +1,7 @@
 # Cool Test Bot
 This is a cool bot which has some features 
+invite the bot from here : https://discord.com/api/oauth2/authorize?client_id=965565479127236618&permissions=8&scope=bot
+
 # Modify For Windows
 
  First of all clone this repo using [git](https://git-scm.com/) <br>
@@ -30,3 +32,4 @@ cd Cool-Test-Bot
 ```sh
 node index.js
 ```
+# Code

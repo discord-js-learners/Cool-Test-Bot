@@ -1,12 +1,13 @@
 const { Client, Intents, MessageEmbed  } = require("discord.js");
 const config = require('./config.json');
+
 const embedHelp = new MessageEmbed()
         .setTitle('Commands')
         .setDescription('Here are the available commands:')
         .setColor('RANDOM')
         .addFields(
             { name: '`;about`', value: 'About this bot.' },
-            { name: '`;ping`', value: 'pong!' },
+            { name: '`;ping`', value: 'pong! and the ping of the bot' },
             { name: '`;servers`', value: 'see how many server(s) is the bot in ' },
             { name: '`;invite`', value: 'Get the invite link for this bot.' },
             { name: '`;mcst`', value: 'Change the bot status to "Playing Minecraft"' },
@@ -14,6 +15,8 @@ const embedHelp = new MessageEmbed()
             { name: '`;csst`', value: 'Change the bot status to "Playing Csgo"' },
             { name: '`;rsst`', value: 'Change the status back to "Coded by shour"' },
             { name: '`;restart`', value: 'Restart The Bot' },
+            { name: '`;clear`', value: 'clears the whole channel' },
+          
         )
         .setTimestamp();
     
@@ -34,9 +37,31 @@ client.on("ready", () => {
   
 });
 
+client.on('messageCreate', async (message) => {
+  // ...
+   if (message.content === ";clear") {
+    if (!message.member.permissions.has('MANAGE_CHANNELS')) return message.reply('you don\'t have the permission for that.');
+    if (!message.guild.me.permissions.has('MANAGE_CHANNELS')) return message.channel.send('I don\'t have the permission for that.');
+    
+    try {
+        await message.channel.clone().then(ch => {
+            ch.setPosition(message.channel.position);
+            ch.send('All messages removed').then(message => {setTimeout(() => message.delete(), 5000);});
+        });
+        await message.channel.delete();
+    } catch (err) {
+        console.error(err);
+    }
+  }
+  // ...
+})
+
+// ...
+
 client.on("messageCreate", (message) => {
   if (message.content.startsWith(";ping")) {
-    message.channel.send("pong!");
+    const clientPing = Math.abs((Date.now() - message.createdTimestamp)  ); // use division if needed
+    message.channel.send(`Pong!  ping: ${clientPing} ms.`);
     
 
   }

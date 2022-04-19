@@ -1,5 +1,29 @@
-const { Client, Intents } = require("discord.js");
+const { Client, Intents, MessageEmbed  } = require("discord.js");
 const config = require('./config.json');
+const embedHelp = new MessageEmbed()
+        .setTitle('Commands')
+        .setDescription('Here are the available commands:')
+        .setColor('RANDOM')
+        .addFields(
+            { name: '`;about`', value: 'About this bot.' },
+            { name: '`;ping`', value: 'pong!' },
+            { name: '`;servers`', value: 'see how many server(s) is the bot in ' },
+            { name: '`;invite`', value: 'Get the invite link for this bot.' },
+            { name: '`;mcst`', value: 'Change the bot status to "Playing Minecraft"' },
+            { name: '`;rbst`', value: 'Change the bot status to "Playing Roblox"' },
+            { name: '`;csst`', value: 'Change the bot status to "Playing Csgo"' },
+            { name: '`;rsst`', value: 'Change the status back to "Coded by shour"' },
+            { name: '`;restart`', value: 'Restart The Bot' },
+        )
+        .setTimestamp();
+    
+    // out of if statement
+function resetBot(channel) {
+  channel.send('`retarting`')
+  .then(msg => client.destroy())
+  .then(() => client.login(config.TOKEN));
+  channel.send('`logged in`')
+}
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
 });
@@ -17,7 +41,7 @@ client.on("messageCreate", (message) => {
 
   }
   else if (message.content.startsWith(";help")) {
-    message.channel.send("prefix is ; here are some commands = ping,servers,about,invite,mcst,rbst,csst  | Usage | ping = pong,servers = see how many servers is this bot in, about = About this bot,invite = Get invite link to this bot,mcst = set the status of the bot to Playing Minecraft,rbst = Set the status of this bot to playing roblox,csst = set the status of this bot to playing csgo,rsst = Resets the status back to Coded by shour");
+    message.channel.send({ embeds: [embedHelp] });
   }
   else if (message.content.startsWith(";servers")) {
       message.channel.send(`Currently in ${client. guilds. cache. size} servers`)
@@ -43,6 +67,9 @@ client.on("messageCreate", (message) => {
   else if (message.content.startsWith(";rsst")){
     message.channel.send("Status reseted back to Coded by shour")
     client.user.setActivity("Coded by shour"); 
+  }
+  else if (message.content.startsWith(";restart")){
+    resetBot(message.channel);
   }
   
 });

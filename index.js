@@ -22,10 +22,10 @@ const embedHelp = new MessageEmbed()
     
     // out of if statement
 function resetBot(channel) {
-  channel.send('`retarting`')
+  channel.send('retarting')
   .then(msg => client.destroy())
   .then(() => client.login(config.TOKEN));
-  channel.send('`logged in`')
+  channel.send('logged in')
 }
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
@@ -96,6 +96,7 @@ client.on("messageCreate", (message) => {
   else if (message.content.startsWith(";restart")){
     resetBot(message.channel);
   }
+  
   
 });
 
